@@ -29,11 +29,7 @@
     }
 
     /* Custom Button Style */
-    .btn-custom {
-      width: 100%; /* Make the button span the width of the container */
-      max-width: 400px; 
-      margin-left: 65px;
-    }
+
   </style>
 </head>
 <body>
