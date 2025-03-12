@@ -27,16 +27,21 @@ class CompteController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'numero' => 'required|numeric|max:50',
-            'type_compte' => 'required|string|max:255',
+            'numero' => 'required|numeric|unique:compte,numero',
+            'type_compte' => 'required|string',
             'solde' => 'required|numeric',
             'date_creation' => 'required|date',
             'description' => 'nullable|string|max:500',
         ]);
-
-        Compte::create($request->all());
-        return redirect()->route('admin.compt_index')->with('success', 'Compte créé avec succès.');
+    
+        try {
+            Compte::create($request->all());
+            return redirect()->route('admin.compt_index')->with('success', 'Compte créé avec succès.');
+        } catch (\Exception $e) {
+            return back()->with('error', 'Une erreur s\'est produite lors de la création du compte.');
+        }
     }
+    
 
     public function edit(Compte $compte)
     {

@@ -145,8 +145,11 @@
                             <div class="modal-body">
                                 <div class="form-group">
                                     <label for="numero">Numéro du Compte</label>
-                                    <input type="text" name="numero" class="form-control" required>
-                                </div>
+                                    <input type="text" name="numero" class="form-control" value="{{ old('numero') }}" required>
+                                    @error('numero')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>                     
                                 <div class="form-group">
                                     <label for="type_compte">Type de Compte</label>
                                     <select name="type_compte" id="type_compte" class="form-control" required>
